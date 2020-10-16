@@ -15,6 +15,16 @@ defmodule WebhookProcessor.Endpoint do
     send_resp(conn, 200, "pong!")
   end
 
+  get "/version" do
+    resp =
+      case :application.get_key(:webhook_processor, :vsn) do
+        {:ok, vsn} -> vsn
+        _ -> "version not found :("
+      end
+
+    send_resp(conn, 200, resp)
+  end
+
   post "/events" do
     {status, body} =
       case conn.body_params do
