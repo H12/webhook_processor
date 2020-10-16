@@ -1,7 +1,5 @@
 FROM elixir:1.10
 
-ARG ENV=prod
-
 ENV MIX_ENV=$ENV
 
 WORKDIR /opt/build
